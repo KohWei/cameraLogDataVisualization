@@ -36,7 +36,7 @@ filteredID = data[data['ViewID'].isin(viewID)]
 cameraDownData = filteredID[filteredID['ErrorDescription'].str.contains("video frame missing", case=False, na=False)]
 
 
-@app.route('/cameraLogVisualization')
+@app.route('/')
 def dashboard():
     ## First Graph
     totalError = (
