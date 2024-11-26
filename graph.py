@@ -2,15 +2,8 @@ from flask import Flask, render_template
 import pandas as pd
 import plotly.express as px
 import plotly.io as pio
-import gdown
 
 app = Flask(__name__)
-
-#
-# url = 'https://drive.google.com/uc?export=download&id=1P_WMa7-MyrwXHCSgZvnXAXMABmy5EzAs'
-#
-# # Download the file
-# gdown.download(url, 'Textual.csv', quiet=False)
 
 # Load your data
 filteredID = pd.read_csv('Textual.csv')
