@@ -7,7 +7,7 @@ import gdown
 app = Flask(__name__)
 
 
-url = 'https://drive.google.com/uc?export=download&id=1JezkyEFiGsRoqGj-9-vnY23no6Rn5vxZ'
+url = 'https://drive.google.com/uc?export=download&id=1P_WMa7-MyrwXHCSgZvnXAXMABmy5EzAs'
 
 # Download the file
 gdown.download(url, 'Textual.csv', quiet=False)
