@@ -2,11 +2,18 @@ from flask import Flask, render_template
 import pandas as pd
 import plotly.express as px
 import plotly.io as pio
+import gdown
 
 app = Flask(__name__)
 
+
+url = 'https://drive.google.com/uc?export=download&id=1ieS7mNJSA68n2N9KFRHT8JZ4e1hS82h5'
+
+# Download the file
+gdown.download(url, 'Textual.csv', quiet=False)
+
 # Load your data
-data = pd.read_csv('data/Textual.csv')
+data = pd.read_csv('Textual.csv')
 
 # Ensure 'Datetime' column is in datetime format
 data['Datetime'] = pd.to_datetime(data['Datetime'])
