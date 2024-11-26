@@ -6,31 +6,20 @@ import gdown
 
 app = Flask(__name__)
 
-
-url = 'https://drive.google.com/uc?export=download&id=1P_WMa7-MyrwXHCSgZvnXAXMABmy5EzAs'
-
-# Download the file
-gdown.download(url, 'Textual.csv', quiet=False)
+#
+# url = 'https://drive.google.com/uc?export=download&id=1P_WMa7-MyrwXHCSgZvnXAXMABmy5EzAs'
+#
+# # Download the file
+# gdown.download(url, 'Textual.csv', quiet=False)
 
 # Load your data
-data = pd.read_csv('Textual.csv')
+filteredID = pd.read_csv('Textual.csv')
 
-# Ensure 'Datetime' column is in datetime format
-data['Datetime'] = pd.to_datetime(data['Datetime'])
-
-# Separate into Hour, Minute, and Second columns
-data['Date'] = data['Datetime'].dt.date
-data['Hour'] = data['Datetime'].dt.hour
-
-totalErrorCount = (data['ErrorType'] == 'Error').sum()
-totalWarning = (data['ErrorType'] == 'Warning').sum()
-
-# Drop unwanted columns, e.g., 'Time' column
-data = data.drop(['Datetime', 'ErrorType', 'ErrorCode'], axis=1)
+totalErrorCount = (filteredID['ErrorType'] == 'Error').sum()
+totalWarning = (filteredID['ErrorType'] == 'Warning').sum()
 
 # Filter data for specific ViewIDs (camera IDs)
 viewID = [3001, 3002, 3003, 3004]
-filteredID = data[data['ViewID'].isin(viewID)]
 
 # Filter rows where the ErrorDescription contains 'video frame missing'
 cameraDownData = filteredID[filteredID['ErrorDescription'].str.contains("video frame missing", case=False, na=False)]
